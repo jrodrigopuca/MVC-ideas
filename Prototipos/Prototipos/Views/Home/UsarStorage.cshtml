@@ -1,0 +1,13 @@
+﻿<br />
+<div class="form-group">
+    @using (Html.BeginForm("UsarStorage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label for="archivo">Seleccionar archivo:</label>
+        <input type="file" name="archivo" class="form-control" />
+        <input type="submit" value="subir" class="btn btn-primary" />
+        <br />
+    }
+    <span style="color:green">@ViewBag.Message</span>
+    <span>@ViewBag.Result</span>
+    <img src="@ViewBag.Url" />
+</div>
