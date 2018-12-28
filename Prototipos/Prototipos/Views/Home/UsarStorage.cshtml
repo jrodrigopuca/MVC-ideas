@@ -1,13 +1,75 @@
 ﻿<br />
-<div class="form-group">
-    @using (Html.BeginForm("UsarStorage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <label for="archivo">Seleccionar archivo:</label>
-        <input type="file" name="archivo" class="form-control" />
-        <input type="submit" value="subir" class="btn btn-primary" />
-        <br />
+<style>
+    .panel{
+        border-color:rgb(42, 156, 245);
+        background-color:whitesmoke;
     }
-    <span style="color:green">@ViewBag.Message</span>
-    <span>@ViewBag.Result</span>
-    <img src="@ViewBag.Url" />
+    .panel .panel-heading {
+        border-color: rgb(42, 156, 245);
+        background-color: rgb(42, 156, 245);
+    }
+    .mi-profesion {
+        color: gray;
+        font-size: large;
+    }
+    .profile-img {
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        height: 50px;
+        border-radius:50%;
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+    .profile-img:hover {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+
+</style>
+
+
+<div class="container row">
+    <div class="col-lg-6 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Cambiar foto de Perfil</div>
+            <div class="panel-body form-group">
+                @using (Html.BeginForm("UsarStorage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <label for="archivo">Seleccionar archivo:</label>
+                    <input type="file" name="archivo" class="form-control" />
+                    <br/>
+                    <input type="submit" value="subir" class="btn btn-primary" />
+                    <br />
+                }
+                <p style="color:green;">@ViewBag.Message</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Mi Perfil </div>
+            <div class="panel-body">
+
+                <p class="text-center img-rounded img-responsive">
+                    <img class="profile-img" src="@ViewBag.Url" alt="" style="@(ViewBag.Url!=""?"display:block":"display:none")" />
+                </p>
+
+                <h1 class="text-center mi-nombre">
+                    @ViewBag.Nombre
+                </h1>
+                <p class="text-center mi-profesion">
+                    @ViewBag.Profesion
+                </p>
+
+                <a class="text-center profile-link" href="@ViewBag.Result" style="@(ViewBag.Result!=""?"display:block":"display:none")">Link de tu imagen</a>
+            </div>
+        </div>
+    </div>
 </div>

@@ -204,6 +204,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\GuardarImagen.cshtml" />
     <Content Include="Views\Home\UsarStorage.cshtml" />
+    <Content Include="Views\Home\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

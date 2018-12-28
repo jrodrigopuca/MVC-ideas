@@ -34,10 +34,15 @@ namespace Prototipos.Controllers
             return View();
         }
 
+        // Controlador del GET del UsarStorage
         [HttpGet]
         public ActionResult UsarStorage()
         {
             ViewBag.Message = "Sube tu imagen a Azure Storage";
+            ViewBag.Nombre = "Khabib Nurmagomedov";
+            ViewBag.Profesion = "Artista Marcial";
+            ViewBag.Result = "";
+            ViewBag.Url = "";
             return View();
         }
 
@@ -45,7 +50,7 @@ namespace Prototipos.Controllers
         public async Task<string> subirImagen(HttpPostedFileBase imagen)
         {
             
-            string linkImagen = null;
+            string linkImagen ="";
             try
             {
                 // Conectar con Azure
@@ -76,7 +81,7 @@ namespace Prototipos.Controllers
             return linkImagen;
         }
 
- 
+        // Controlador del POST del UsarStorage
         [HttpPost]
         public async Task<ActionResult> UsarStorage(HttpPostedFileBase archivo)
         {
@@ -84,9 +89,11 @@ namespace Prototipos.Controllers
             var linkImagen = await subirImagen(archivo);
 
             // Si no hay link de la imagen entonces hubo error
-            ViewBag.Message = linkImagen != null ? "Listo en Azure" : "Error";
+            ViewBag.Message = (linkImagen != "")? "Listo en Azure" : "Error";
             ViewBag.Result = linkImagen;
             ViewBag.Url = linkImagen;
+            ViewBag.Nombre = "Khabib Nurmagomedov";
+            ViewBag.Profesion = "Artista Marcial";
             return View();
         }
 
@@ -101,6 +108,8 @@ namespace Prototipos.Controllers
         [HttpPost]
         public ActionResult GuardarImagen(HttpPostedFileBase archivo)
         {
+            // Este control sirve para un Hosting, "podría servir para Azure" pero es mejor ir con AzureStorage
+            // Guardar imagen: Si no está el directorio Imagenes lo va a crear
             if (archivo != null)
             {
                 string path = Server.MapPath("~/Imagenes/");
